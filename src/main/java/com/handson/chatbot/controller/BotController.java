@@ -1,5 +1,6 @@
 package com.handson.chatbot.controller;
 
+import com.handson.chatbot.service.ChuckJokeService;
 import com.handson.chatbot.service.ImdbService;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,16 @@ public class BotController {
 
     @Autowired
     ImdbService imdbService;
+    @Autowired
+    ChuckJokeService chuckJokeService;
 
     @RequestMapping(value = "/imdb", method = RequestMethod.GET)
     public ResponseEntity<?> getProduct(@RequestParam String keyword) throws IOException {
         return new ResponseEntity<>(imdbService.searchProducts(keyword), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/jokes", method = RequestMethod.GET)//query jokes with "keyword"
+    public ResponseEntity<?> getJoke(@RequestParam String keyword) throws IOException {
+        return new ResponseEntity<>(chuckJokeService.getJoke(keyword), HttpStatus.OK);
     }
 }

@@ -27,7 +27,7 @@ public class ImdbService {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
+        //RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
                 .url("https://www.imdb.com/chart/top/")
                 .method("GET", null)
