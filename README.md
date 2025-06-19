@@ -1,30 +1,31 @@
-# 🤖 Chatbot API
+# Chatbot API
 
-A Spring Boot-based chatbot service integrated with Google Dialogflow. It responds dynamically using external and custom data sources — including scraped data from IMDb's Top movies list and Chuck Norris jokes from a public API. Users can interact through Dialogflow webhook calls or directly via REST endpoints.
-## ⚙️ Tech Stack
+A Spring Boot-based chatbot service integrated with Google Dialogflow. It responds dynamically using external and custom data sources — including scraped data from IMDb's Top movies list and Chuck Norris jokes from a public API. Users can interact with the chatbot through Dialogflow webhook calls or directly via REST endpoints.
+
+---
+
+## Tech Stack
 
 - **Java 17**
 - **Spring Boot**
 - **Spring Web**
-- **OkHttp** – for external HTTP calls
-- **Swagger** – for API documentation
-- **Custom IMDb Scraper** – collects data from IMDb’s Top movies list
-- **Chuck Norris Joke API** – for humorous responses about any topic
+- **OkHttp**
+- **Swagger**
+- **Custom IMDb Scraper**
+- **Chuck Norris Joke API**
 - **Maven**
 
 ---
 
-## ✅ Features
+## Features
 
-- Search movie info via IMDb Top 250 list
+- Search movie info via IMDb Top 250 list (scraped HTML parsed by regex)
 - Retrieve Chuck Norris jokes using a keyword
-- Accept Dialogflow-like POST payloads with parameters
-- Unified JSON response with custom response format
-- Swagger available at `/swagger-ui/index.html` (if enabled)
-
+- Accept Dialogflow-like POST payloads with parameters (`jokeParam` or `product`)
+- Unified JSON response format for chatbot compatibility
 ---
 
-## 📁 Project Structure
+## Project Structure
 ```text
 src/
 ├── main/
@@ -39,11 +40,12 @@ src/
 ```
 ## API Endpoints
 Method	Endpoint	Description
-```http
-GET	/bot/imdb	Search IMDb's Top movies list (?keyword=...)
-GET	/bot/jokes	Fetch a Chuck Norris joke based on a topic (?keyword=...)
-POST	/bot	Dialogflow-style POST with parameters (jokeParam / product)
-```
+| Method | Endpoint     | Description                                                    |
+| ------ | ------------ | -------------------------------------------------------------- |
+| GET    | `/bot/imdb`  | Search IMDb's Top movies list (`?keyword=...`)                 |
+| GET    | `/bot/jokes` | Fetch a Chuck Norris joke based on a topic (`?keyword=...`)    |
+| POST   | `/bot`       | Dialogflow-style POST with `jokeParam` or `product` parameters |
+
 ## Example Requests
 IMDb Search
 ```bash
